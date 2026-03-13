@@ -3,10 +3,12 @@ package com.basic.myspringboot.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Entity // 나는 테이블과 매핑되는 클래스다
-@Table(name = "customers") // 테이블 이름은 customer
+@Table(name = "customers") // 테이블 이름은 customers
 @Getter @Setter
+@DynamicUpdate
 public class Customer {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) // default 값은 auto
     private Long id;
@@ -16,6 +18,8 @@ public class Customer {
     @Column(unique = true, nullable = false)
     private String customerId;
 
-    @Column
+    @Column(nullable = false)
     private String customerName;
+
+
 }
